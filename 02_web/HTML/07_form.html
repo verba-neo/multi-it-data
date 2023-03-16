@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>Form</h1>
+
+    <!-- 양 식 -->
+    <!-- method="GET" => 여기 있는 입력 데이터는 남들이 봐도 상관이 없다. -->
+    <!-- method="POST" => 여기 있는 입력 데이터는 보이면 안된다. -->
+    <form action="URL(이 데이터를 제출(요청)할 URL)" method="POST">  
+        <div>
+            <label for="username">username </label>
+            <input type="text" id="username" required autofocus>
+        </div>
+        
+        <div>
+            <label for="password">password </label>
+            <input type="password" id="password">
+        </div>
+
+        <div>
+            <label for="my-email">email </label>
+            <input type="email" id="my-email" placeholder="email은 @를 포함합니다.">
+        </div>
+
+        <div>
+            <label for="age">age </label>
+            <input type="number" id="age" value="20">
+        </div>
+
+        <div>
+            <input type="checkbox" id="apple" value="apple"><label for="apple">사과</label>
+            <input type="checkbox" value="banana">바나나
+            <input type="checkbox" value="strawberry">딸기
+        </div>
+
+        <div>
+            <input type="radio" name="gender" value="M">남자
+            <input type="radio" name="gender" value="F">여자
+            <input type="radio" name="gender" value="N">둘다 아님
+        </div>
+
+        <div>
+            <input type="submit" value="얍!">
+        </div>
+    </form>
+    
+    <hr>
+
+    <div>
+        <input type="color">
+        <input type="email">
+        <input type="number">
+        <input type="radio">
+        <input type="checkbox">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+
+
+    <hr>
+    
+    <form action="https://search.naver.com/search.naver" method="GET">
+        <label for="keyword">검색어: </label>
+        <input type="text" name="query" id="keyword">
+    </form>
+
+</body>
+</html>
