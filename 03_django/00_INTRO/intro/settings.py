@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'yourapp',
     'myapp',
     'hair',
+    'utilities',
 ]
 
 MIDDLEWARE = [

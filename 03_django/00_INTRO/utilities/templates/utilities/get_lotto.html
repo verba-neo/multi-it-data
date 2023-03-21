@@ -7,11 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>MYAPP</h1>
-    <!-- DTL(Django Template Language) -->
-    <h2>{{ draw_no }}</h2>
-    <p>
-        {{ lucky_numbers }}
-    </p>
+    <h1>Lucky Numbers</h1>
+
+    <ul>
+        {% for num in lucky_numbers %}
+        <!-- {{ 출력 }} -->
+        <li>{{ num }}</li>
+        {% endfor %}
+    </ul>
+
+
 </body>
 </html>
