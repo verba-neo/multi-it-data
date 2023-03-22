@@ -8,6 +8,18 @@
     <title>Document</title>
 </head>
 <body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'ping' %}">Ping</a>
+            </li>
+            <li>
+                <a href="{% url 'lotto_in' %}">Lotto</a>
+            </li>
+        </ul>
+    </nav>
+
     {% block content %}
     {% endblock content %}
 </body>

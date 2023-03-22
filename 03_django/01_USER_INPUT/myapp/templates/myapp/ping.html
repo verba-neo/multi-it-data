@@ -3,7 +3,8 @@
 
 {% block content %}
 <h1>Your Info</h1>
-<form action="/myapp/pong/">
+<form action="/myapp/pong/" method="POST">
+    {% csrf_token %}
     <div>
         <label for="myname">이름: </label>
         <input type="text" id="myname" name="myname">
@@ -25,5 +26,3 @@
 </form>
 
 {% endblock content %}
-
-http://127.0.0.1:8000/myapp/pong/?myname=kje&age123=30&mbti123=ICBM

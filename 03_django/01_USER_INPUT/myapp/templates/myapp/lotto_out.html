@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ draw_no }} 회차</h1>
+
+<ul>
+    {% for num in numbers %}
+    <li>{{ num }}</li>
+    {% endfor %}
+</ul>
+<p>bonus: {{ bonus_no }}</p>
+
+{% endblock content %}
