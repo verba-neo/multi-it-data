@@ -11,4 +11,13 @@
 
 <p>{{ article.content }}</p>
 
+<div>
+    <a href="/blog/{{ article.pk }}/delete/">
+        <!-- onclick 뒤에는 JS 코드 -->
+        <button onclick="return confirm('삭제하실?')">
+            삭제
+        </button>
+    </a>
+</div>
+
 {% endblock content %}

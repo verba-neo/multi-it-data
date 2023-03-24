@@ -8,13 +8,19 @@ urlpatterns = [
     # Create
     # blog/new/
     path('new/', views.new, name='new'),
-    # blog/create/
+    # blog/create/ [사용자 입력 데이터]
     path('create/', views.create, name='create'),
 
     # Read
     # blog/
     path('', views.index, name='index'),
     # blog/1/
-    path('<int:article_pk>/', views.detail, name='detail'),
+    path('<int:x>/', views.detail, name='detail'),
 
+
+    # Update
+
+    # Delete
+    # blog/1/delete/
+    path('<int:x>/delete/', views.delete, name='delete'),
 ]
