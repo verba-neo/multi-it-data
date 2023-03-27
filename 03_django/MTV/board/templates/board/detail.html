@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ notice.title }}</h1>
+<p>{{ notice.rank }}</p>
+
+<div>
+    <a href="/board/{{ notice.pk }}/edit/">
+        <button>수정</button>
+    </a>
+</div>
+<div>
+    <a href="/board/{{ notice.pk }}/delete/">
+        <button onclick="return confirm('삭제하실?')">삭제</button>
+    </a>
+</div>
+
+<p>
+    {{ notice.content | linebreaksbr }}
+</p>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Notice</h1>
+
+<form action="/board/{{ notice.pk }}/update/" method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="title">공지 제목: </label>
+        <input type="text" name="title" id="title" value="{{ notice.title }}">
+    </div>
+    <div>
+        <label for="rank">공지 중요도: </label>
+        <input type="number" name="rank" id="rank" value="{{ notice.rank }}">
+    </div>
+    <div>
+        <label for="content">공지 내용: </label>
+        <textarea name="content" id="content" cols="30" rows="10">{{ notice.content }}</textarea>
+    </div>
+    <div>
+        <button>제출 w/ button</button>
+    </div>
+</form>
+
+
+{% endblock content %}
