@@ -26,12 +26,12 @@
     - 특정 게시글을 조회하는 HTML을 제공
     - 게시글의 제목/내용/작성시간/수정시간을 보여준다.
     - `detail.html`
-- `blog/?????/`
+- `blog/1/edit/`
     - 특정 게시글을 수정하도록 form을 보여주는 HTML 제공
     - `edit.html`
-- `blog/??????/`
+- `blog/1/update/`
     - 사용자가 Form을 통해 제출한 데이터로 특정 게시글을 수정
-    - ?????
+    - 상세 페이지로 redirect
 - `blog/1/delete/`
     - 특정 게시글을 삭제
     - 목록 페이지로 redirect

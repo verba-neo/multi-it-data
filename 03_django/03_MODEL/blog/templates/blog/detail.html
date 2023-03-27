@@ -9,13 +9,20 @@
     {{ article.created_at }} | {{ article.updated_at }}
 </p>
 
-<p>{{ article.content }}</p>
+<p>{{ article.content | linebreaksbr }}</p>
 
 <div>
     <a href="/blog/{{ article.pk }}/delete/">
         <!-- onclick 뒤에는 JS 코드 -->
         <button onclick="return confirm('삭제하실?')">
             삭제
+        </button>
+    </a>
+</div>
+<div>
+    <a href="/blog/{{ article.pk }}/edit/">
+        <button>
+            수정
         </button>
     </a>
 </div>

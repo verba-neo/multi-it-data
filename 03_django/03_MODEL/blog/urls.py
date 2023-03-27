@@ -19,6 +19,10 @@ urlpatterns = [
 
 
     # Update
+    # blog/1/edit/
+    path('<int:x>/edit/', views.edit, name='edit'),
+    # blog/1/update/
+    path('<int:x>/update/', views.update, name='update'),
 
     # Delete
     # blog/1/delete/
