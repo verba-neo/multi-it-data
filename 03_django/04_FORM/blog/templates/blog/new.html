@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<form action="/blog/create/" method="POST">
+<!-- form의 action이 비어있으면 => 현재 form을 보고있는 URL로 보냄 -->
+<!-- 지금 현재 URL로 요청을 보냄 -->
+<form action="" method="POST">
     {% csrf_token %}
-
     {{ form.as_p }}
-
     <div>
         <button>GO</button>
     </div>
