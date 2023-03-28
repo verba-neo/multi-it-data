@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="/blog/create/" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div>
+        <button>GO</button>
+    </div>
+</form>
+
+
+{% endblock content %}
