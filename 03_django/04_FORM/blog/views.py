@@ -11,14 +11,12 @@ def create(request):
     elif request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('/blog/new/')
+            student = form.save()
+            return redirect('detail', student.pk)
         
-    return render(request, 'blog/new.html', {
+    return render(request, 'blog/form.html', {
         'form': form
     })
-
-
 
 
 def index(request):
@@ -35,13 +33,23 @@ def detail(request, student_pk):
     })
 
 
-def edit(request, stduent_pk):
-    return render(request, 'blog/edit.html')
-
-
 def update(request, student_pk):
-    return redirect('')
+    student = Student.objects.get(pk=student_pk)
+    if request.method == 'GET':
+        form = StudentForm(instance=student)
+    elif request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            student = form.save()
+            # return redirect(f'/blog/{student.pk}/')
+            return redirect('detail', student.pk)
+
+    return render(request, 'blog/form.html', {
+        'form': form,
+    })
 
 
 def delete(request, student_pk):
-    return redirect('')
+    student = Student.objects.get(pk=student_pk)
+    student.delete()
+    return redirect('index')
