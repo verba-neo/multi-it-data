@@ -10,11 +10,18 @@
     <nav>
         <ul>
             <li>
-                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'qna:index' %}">QnA Home</a>
             </li>
             <li>
-                <a href="{% url 'create' %}">New</a>
+                <a href="{% url 'qna:create' %}">New Qna</a>
             </li>
+
+            {% comment %} <li>
+                <a href="{% url 'blog:index' %}">Blog(Student) Home</a>
+            </li>
+            <li>
+                <a href="{% url 'blog:create' %}">New Blog(Student)</a>
+            </li> {% endcomment %}
         </ul>
     </nav>
     {% block content %}
