@@ -1,0 +1,24 @@
+<!-- _reply_list.html -->
+
+<div>
+    <p>댓글 목록</p>
+    {% if replies %}
+    <ul>
+        {% for reply in replies %}
+        <li>
+            {{ reply.content }}
+            <form 
+                action="{% url 'blog:delete_reply' posting.pk reply.pk %}"
+                method="POST"
+                style="display: inline-block;"
+            >
+                {% csrf_token %}
+                <button>삭제</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>첫 댓글을 작성해 주세요 :)</p>
+    {% endif %}
+</div>

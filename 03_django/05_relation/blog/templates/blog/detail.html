@@ -20,27 +20,8 @@
     </form>
 </p>
 
-<div>
-    <p>댓글 작성</p>
-    <form action="{% url 'blog:create_reply' posting.pk %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p}}    
-        <button>얍!</button>
-    </form>
-</div>
-
-<div>
-    <p>댓글 목록</p>
-    {% if replies %}
-    <ul>
-        {% for reply in replies %}
-        <li>{{ reply.content }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>첫 댓글을 작성해 주세요 :)</p>
-    {% endif %}
-</div>
+{% include 'blog/_reply_form.html' %}
+{% include 'blog/_reply_list.html' %}
 
 
 {% endblock content %}
