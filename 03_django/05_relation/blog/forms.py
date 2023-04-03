@@ -14,4 +14,5 @@ class ReplyForm(forms.ModelForm):
 
     class Meta:
         model = Reply
-        fields = '__all__'
+        fields = ('content', )
+        # exclude = ('posting', )

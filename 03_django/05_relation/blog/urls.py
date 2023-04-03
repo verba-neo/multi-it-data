@@ -14,4 +14,7 @@ urlpatterns = [
     path('<int:posting_pk>/update/', views.update_posting, name='update_posting'),
     # blog/1/delete/
     path('<int:posting_pk>/delete/', views.delete_posting, name='delete_posting'),
+
+    # blog/1/replies/create/
+    path('<int:posting_pk>/replies/create/', views.create_reply, name='create_reply'),
 ]
