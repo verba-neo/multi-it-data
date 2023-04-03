@@ -60,6 +60,6 @@
         - 유효하지 않을 경우, `form.html` 을 render
 
 - `blog/1/delete/` => `views.delete_posting`
-    - 특정 게시글을 삭제
+    - 특정 Posting을 삭제
     - `POST` 방식으로 접근하도록 만들어야 함
     - 삭제후 목록으로 `rerdirect`
