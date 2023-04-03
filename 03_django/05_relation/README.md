@@ -35,7 +35,7 @@
 
 
 ### URL conf
-- `blog/create/` => `view.create_posting`
+- `blog/create/` => `views.create_posting`
     - `GET`
         - 새로운 Posting을 작성하는`form.html`을 제공
     - `POST`
