@@ -61,7 +61,9 @@ ROOT_URLCONF = 'intro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 원래는 INSTALLED_APPS 안에 templates/ 폴더만 찾는데,
+        # 추가로 찾고싶은 폴더가 있으면, 직접 적어라
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

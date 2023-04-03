@@ -20,7 +20,7 @@ def create(request):
     })
 
 
-@require_safe 
+@require_safe # GET 
 def index(request):
     questions = Question.objects.order_by('-reward')
     return render(request, 'qna/index.html', {

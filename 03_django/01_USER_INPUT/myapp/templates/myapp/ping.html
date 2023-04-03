@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1>Your Info</h1>
-<form action="/myapp/pong/" method="POST">
+<form action="{% url 'pong' %}" method="POST">
     {% csrf_token %}
     <div>
         <label for="myname">이름: </label>

@@ -74,4 +74,23 @@ def create_reply(request, posting_pk):
         reply = form.save(commit=False)  # 저장 멈춰! 
         reply.posting = p
         reply.save()
-        return redirect('blog:posting_detail', p.pk)
+    return redirect('blog:posting_detail', p.pk)
+    '''
+    else:
+        from django.http import HttpResponseBadRequest
+        return HttpResponseBadRequest('댓글 에러')
+
+        return render(request, 'blog/detail.html', {
+            form: 'form',
+            posting: p,
+            relies: p.reply_set.all(),
+        })
+    '''
+
+
+@require_POST
+def delete_reply(request, posting_pk, reply_pk):
+    p = get_object_or_404(Posting, pk=posting_pk)
+    r = get_object_or_404(Reply, pk=reply_pk)
+    r.delete()
+    return redirect('blog:posting_detail', p.pk)

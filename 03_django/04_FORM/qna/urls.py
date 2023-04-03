@@ -9,7 +9,7 @@ urlpatterns = [
     # No pk(var routing) required
     # qna:create
     path('create/', views.create, name='create'),
-    # qna:index``
+    # qna:index
     path('', views.index, name='index'),
 
     # var routing => modelname_pk

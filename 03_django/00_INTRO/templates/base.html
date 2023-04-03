@@ -1,4 +1,5 @@
-<!-- ROOT/templates/base.html -->
+<!-- base.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    {% include '_nav.html' %}
-
-    {% block content %}
-    {% endblock content %}
+    {% block content %}{% endblock content %}
 </body>
 </html>

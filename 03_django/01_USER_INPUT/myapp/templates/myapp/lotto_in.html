@@ -1,7 +1,8 @@
+<!-- myapp/lotto_in.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<form action="/myapp/lotto_out/">
+<form action="{% url 'lotto_out' %}">
     <div>
         <label for="draw_no">회차: </label>
         <input type="number" id="draw_no" name="draw_no">

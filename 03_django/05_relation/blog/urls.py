@@ -17,4 +17,7 @@ urlpatterns = [
 
     # blog/1/replies/create/
     path('<int:posting_pk>/replies/create/', views.create_reply, name='create_reply'),
+    # blog/1/replies/1/delete/
+    path('<int:posting_pk>/replies/<int:reply_pk>/delete/', views.delete_reply, name='delete_reply'),
+    
 ]
