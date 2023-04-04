@@ -1,0 +1,42 @@
+<!-- _navbar.html -->
+<nav>
+    <ul>
+        <!-- 인증 여부 상관 없이 보임 -->
+        <li>
+            <a href="{% url 'blog:posting_index' %}">Home</a>
+        </li>
+        <!-- 인증(로그인)된 사용자라면 -->
+        {% if request.user.is_authenticated %}
+        <li>
+            <a href="{% url 'blog:create_posting' %}">New Posting</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:signout' %}">Logout</a>
+        </li>
+        <!-- 인증(로그인)되지 않은 사용자라면 -->
+        {% else %}
+        <li>
+            <a href="{% url 'accounts:signin' %}">Login</a>
+        </li>
+        <li>
+            <a href="{% url 'accounts:signup' %}">Signup</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<!--
+LOGIN 여부
+
+x 로그인
+o 로그아웃
+x 회원가입
+o 글 쓰기
+ox 글 목록
+ox 글 상세
+o+a 글 수정
+o+a 글 삭제
+o 댓글 생성
+o+a 댓글 삭제
+ox 댓글 확인
+-->
