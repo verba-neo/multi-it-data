@@ -7,12 +7,14 @@ class PostingForm(forms.ModelForm):
 
     class Meta:
         model = Posting
-        fields = '__all__'
+        # user 빼고 모든 필드 다
+        exclude = ('user', )
 
 
 class ReplyForm(forms.ModelForm):
 
     class Meta:
         model = Reply
+        # content 필드만
         fields = ('content', )
         # exclude = ('posting', )

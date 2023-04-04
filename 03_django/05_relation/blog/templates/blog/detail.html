@@ -20,7 +20,10 @@
     </form>
 </p>
 
-{% include 'blog/_reply_form.html' %}
+{% if request.user.is_authenticated %}
+    {% include 'blog/_reply_form.html' %}
+{% endif %}
+
 {% include 'blog/_reply_list.html' %}
 
 

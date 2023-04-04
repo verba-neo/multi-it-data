@@ -1,16 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_safe, require_POST, require_http_methods
+from django.contrib.auth.decorators import login_required
 
 from .models import Posting, Reply
 from .forms import PostingForm, ReplyForm
 
 
+# 로그인 안하고 글쓰는 URL 접속하고, 뭔가 찾아내기
+@login_required
 @require_http_methods(['GET', 'POST'])
 def create_posting(request):
     if request.method == 'POST':
         form = PostingForm(request.POST)
         if form.is_valid():
-            posting = form.save()
+            posting = form.save(commit=False)
+            posting.user = request.user
+            posting.save()
             return redirect('blog:posting_detail', posting.pk)
     else:
         form = PostingForm()
@@ -43,9 +48,14 @@ def posting_detail(request, posting_pk):
     })
 
 
+@login_required
 @require_http_methods(['GET', 'POST'])
 def update_posting(request, posting_pk):
     posting = get_object_or_404(Posting, pk=posting_pk)
+
+    if request.user != posting.user:
+        return redirect('blog:posting_index')
+
     if request.method == 'POST':
         form = PostingForm(request.POST, instance=posting)
         if form.is_valid():
@@ -58,23 +68,30 @@ def update_posting(request, posting_pk):
     })
 
 
+@login_required
 @require_POST
 def delete_posting(request, posting_pk):
     posting = get_object_or_404(Posting, pk=posting_pk)
+    
+    if request.user != posting.user:
+        return redirect('blog:posting_index')
+        
     posting.delete()
     return redirect('blog:posting_index')
 
 
+@login_required
 @require_POST
 def create_reply(request, posting_pk):
-    p = get_object_or_404(Posting, pk=posting_pk)
+    posting = get_object_or_404(Posting, pk=posting_pk)
     form = ReplyForm(request.POST)
 
     if form.is_valid():
         reply = form.save(commit=False)  # 저장 멈춰! 
-        reply.posting = p
+        reply.posting = posting  # 비어있는 컬럼 => FK
+        reply.user = request.user
         reply.save()
-    return redirect('blog:posting_detail', p.pk)
+    return redirect('blog:posting_detail', posting.pk)
     '''
     else:
         from django.http import HttpResponseBadRequest
@@ -87,10 +104,13 @@ def create_reply(request, posting_pk):
         })
     '''
 
-
+@login_required
 @require_POST
 def delete_reply(request, posting_pk, reply_pk):
-    p = get_object_or_404(Posting, pk=posting_pk)
-    r = get_object_or_404(Reply, pk=reply_pk)
-    r.delete()
-    return redirect('blog:posting_detail', p.pk)
+    posting = get_object_or_404(Posting, pk=posting_pk)
+    reply = get_object_or_404(Reply, pk=reply_pk)
+
+    if request.user == reply.user:
+        reply.delete()
+        
+    return redirect('blog:posting_detail', posting.pk)

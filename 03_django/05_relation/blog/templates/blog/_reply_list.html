@@ -6,7 +6,9 @@
     <ul>
         {% for reply in replies %}
         <li>
-            {{ reply.content }}
+            {{ reply.user }}: {{ reply.content }}
+
+            {% if request.user == reply.user %}
             <form 
                 action="{% url 'blog:delete_reply' posting.pk reply.pk %}"
                 method="POST"
@@ -15,6 +17,8 @@
                 {% csrf_token %}
                 <button>삭제</button>
             </form>
+            {% endif %}
+
         </li>
         {% endfor %}
     </ul>
