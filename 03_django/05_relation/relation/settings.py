@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'one_to_many',
+    'many_to_many',
+    
     'blog',
     'accounts',
 ]

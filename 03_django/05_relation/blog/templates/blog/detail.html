@@ -2,11 +2,13 @@
 
 {% block content %}
 <h1>{{ posting.title }}</h1>
-
+<h2>by - {{ posting.user }}</h2>
 <p>
     {{ posting.content | linebreaksbr }}
 </p>
 
+<!-- 작성자와 현재 사용자가 같을 경우에만 보여주기 -->
+{% if request.user == posting.user %}
 <p>
     <a href="{% url 'blog:update_posting' posting.pk %}">
         <button>수정</button>
@@ -19,11 +21,21 @@
         <button>삭제</button>
     </form>
 </p>
-
-{% if request.user.is_authenticated %}
-    {% include 'blog/_reply_form.html' %}
 {% endif %}
 
+<!-- 로그인 한 사람에게만 보임 -->
+{% if request.user.is_authenticated %}
+    <!-- 좋아요 UI -->
+    <form action="{% url 'blog:like_posting' posting.pk %}" method="POST">
+        {% csrf_token %}
+        <button>{{ button_text }}</button>
+        ({{ posting.like_users.count }})
+    </form>
+    <!-- 댓글 작성 폼 -->
+    {% include 'blog/_reply_form.html' %}
+{% endif %}
+    
+<!-- 댓글 리스트 -->
 {% include 'blog/_reply_list.html' %}
 
 

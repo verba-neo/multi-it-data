@@ -20,4 +20,6 @@ urlpatterns = [
     # blog/1/replies/1/delete/
     path('<int:posting_pk>/replies/<int:reply_pk>/delete/', views.delete_reply, name='delete_reply'),
     
+    # blog/1/like/
+    path('<int:posting_pk>/like_posting/', views.like_posting, name='like_posting'),
 ]

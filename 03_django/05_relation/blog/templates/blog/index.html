@@ -6,6 +6,7 @@
 <ul>
     {% for posting in postings %}
     <li>
+        {{ posting.user }}: 
         <a href="{% url 'blog:posting_detail' posting.pk %}">
             {{ posting.title }}
         </a>
