@@ -13,6 +13,11 @@
         <li>
             <a href="{% url 'accounts:signout' %}">Logout</a>
         </li>
+        <li>
+            <a href="{% url 'accounts:profile' request.user %}">
+                {{ request.user }}'s Profile
+            </a>
+        </li>
         <!-- 인증(로그인)되지 않은 사용자라면 -->
         {% else %}
         <li>

@@ -4,14 +4,35 @@
 <h1>All QnA</h1>
 
 <ul>
-    {% for posting in postings %}
+    {% comment %} {% for posting in postings %}
     <li>
-        {{ posting.user }}: 
+        <a href="{% url 'accounts:profile' posting.user.username %}">{{ posting.user }}</a>: 
         <a href="{% url 'blog:posting_detail' posting.pk %}">
             {{ posting.title }}
         </a>
     </li>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">좋아요 개수</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for posting in postings %}
+          
+          <tr>
+            <th scope="row">{{ posting.pk }}</th>
+            <td><a href="{% url 'blog:posting_detail' posting.pk %}">{{ posting.title }}</a></td>
+            <td><a href="{% url 'accounts:profile' posting.user %}">{{ posting.user }}</a></td>
+            <td>{{ posting.like_users.count }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 </ul>
 
 

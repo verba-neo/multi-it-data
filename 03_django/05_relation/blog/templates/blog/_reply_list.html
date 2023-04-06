@@ -6,7 +6,7 @@
     <ul>
         {% for reply in replies %}
         <li>
-            {{ reply.user }}: {{ reply.content }}
+            <a href="{% url 'accounts:profile' reply.user %}">{{ reply.user }}</a>: {{ reply.content }}
 
             {% if request.user == reply.user %}
             <form 

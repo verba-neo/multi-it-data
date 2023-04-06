@@ -1,9 +1,10 @@
 # accounts/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods, require_POST, require_safe
-
+from django.http import HttpResponseBadRequest
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm
 
@@ -65,7 +66,25 @@ def signout(request):
 def profile(request, username):
     # username(컬럼명) = username(var routing 변수명)
     profile_user = get_object_or_404(User, username=username)
+    is_following = request.user.stars.filter(pk=profile_user.pk).exists()
+
 
     return render(request, 'accounts/profile.html', {
         'profile_user': profile_user,
+        'is_following': is_following,
     })
+
+
+@login_required
+@require_POST
+def follow(request, username):
+    you = get_object_or_404(User, username=username)
+    me = request.user
+    if me == you:
+        return HttpResponseBadRequest('Can not follow yourself')
+    
+    if me.stars.filter(pk=you.pk).exists():
+        me.stars.remove(you)
+    else:
+        me.stars.add(you)
+    return redirect('accounts:profile', you.username)

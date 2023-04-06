@@ -5,10 +5,19 @@
 <h1>{{ profile_user.username }}의 프로필 페이지</h1>
 
 <p>
-    팔로워: 123 | 팔로잉: 456
+    팔로워: {{ profile_user.fans.count }} | 팔로잉: {{ profile_user.stars.count }}
 </p>
-
-<button>팔로우</button>
+<!-- 본인한테는 팔로우 버튼 나오면 안됨 -->
+{% if profile_user != request.user %}
+<form action="{% url 'accounts:follow' profile_user.username %}" method="POST">
+    {% csrf_token %}
+    {% if is_following %}
+    <button>언팔로우</button>
+    {% else %}
+    <button>팔로우</button>
+    {% endif %}
+</form>
+{% endif %}
 
 <h2>작성 글 목록</h2>
 <ul>
@@ -27,6 +36,30 @@
     </li>
     {% endfor %}
 </ul>
+
+{% if profile_user == request.user %}
+<h2>내가 좋아한 글 목록</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">좋아요 개수</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for posting in profile_user.like_postings.all %}
+      <tr>
+        <th scope="row">{{ posting.pk }}</th>
+        <td><a href="{% url 'blog:posting_detail' posting.pk %}">{{ posting.title }}</a></td>
+        <td><a href="{% url 'accounts:profile' posting.user %}">{{ posting.user }}</a></td>
+        <td>{{ posting.like_users.count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
 
 
 
