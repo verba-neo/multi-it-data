@@ -1,0 +1,33 @@
+<!-- accounts/profile.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ profile_user.username }}의 프로필 페이지</h1>
+
+<p>
+    팔로워: 123 | 팔로잉: 456
+</p>
+
+<button>팔로우</button>
+
+<h2>작성 글 목록</h2>
+<ul>
+    {% for posting in profile_user.posting_set.all %}
+    <li>
+        <a href="{% url 'blog:posting_detail' posting.pk %}">{{ posting.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>작성 댓글 목록</h2>
+<ul>
+    {% for reply in profile_user.reply_set.all %}
+    <li>
+        <a href="{% url 'blog:posting_detail' reply.posting.pk %}">{{ reply.content }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock content %}

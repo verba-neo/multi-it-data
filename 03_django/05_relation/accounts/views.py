@@ -1,11 +1,13 @@
 # accounts/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_http_methods, require_POST, require_safe
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, get_user_model
 
 from .forms import CustomUserCreationForm
+
+User = get_user_model()
 
 
 @require_http_methods(['GET', 'POST'])
@@ -60,6 +62,10 @@ def signout(request):
     return redirect('blog:posting_index')
 
 
-# http://127.0.0.1:8000/accounts/signin/
-# ?
-# next=/blog/create/
+def profile(request, username):
+    # username(컬럼명) = username(var routing 변수명)
+    profile_user = get_object_or_404(User, username=username)
+
+    return render(request, 'accounts/profile.html', {
+        'profile_user': profile_user,
+    })

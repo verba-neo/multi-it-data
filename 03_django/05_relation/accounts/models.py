@@ -6,8 +6,11 @@ from blog.models import Posting
 
 
 class User(AbstractUser):
-    mbti = models.CharField(max_length=4)  # => 컬럼추가 == default 세팅 필요
+    # mbti = models.CharField(max_length=4)  # => 컬럼추가 == default 세팅 필요
     like_postings = models.ManyToManyField(Posting, related_name='like_users')  # 테이블 추가
+    # symmetrical 
+    stars = models.ManyToManyField('self', symmetrical=False, related_name='fans')
+    # followers = models.ManyToManyField('self', symmetrical=False, related_name='followings')
 
 
 '''
