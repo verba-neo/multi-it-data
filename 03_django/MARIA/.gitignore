@@ -1,0 +1,3 @@
+# gitignore.io 에서 python django venv 모두 추가 한 이후에
+# 추가로 적을 내용
+*.cnf
