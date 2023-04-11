@@ -48,7 +48,9 @@ def signin(request):
             
             # 0. URL 에 ?와 &로 넘어오는 값들은 모두 request.GET 꾸러미에 담긴다.
             # 1. request.GET 은 dict
-            # 2. dict의 get 메서드 떠올리기
+            # 2. dict의 get 메서드 떠올리기 
+            # @login_required 로 튕겨서 올 경우 {'next': '/blog/create/'}.get('next') => '/blog/create/'
+            # 그냥 접속한 경우 {}.get('next') => None
             # 3. or 은 1 or 2 or 3 / 0 or 1 or 2
             return redirect(request.GET.get('next') or 'blog:posting_index')
     else:
@@ -63,6 +65,7 @@ def signout(request):
     return redirect('blog:posting_index')
 
 
+@require_safe
 def profile(request, username):
     # username(컬럼명) = username(var routing 변수명)
     profile_user = get_object_or_404(User, username=username)
@@ -87,4 +90,6 @@ def follow(request, username):
         me.stars.remove(you)
     else:
         me.stars.add(you)
+    # render => 사용자에게 무언가를 보여줄거야
+    # redirect => 사용자를 다른곳으로 보낼거야
     return redirect('accounts:profile', you.username)

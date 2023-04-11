@@ -1,10 +1,11 @@
 <!-- _reply_form.html -->
+{% load bootstrap5 %}
 
 <div>
     <p>댓글 작성</p>
     <form action="{% url 'blog:create_reply' posting.pk %}" method="POST">
         {% csrf_token %}
-        {{ form }}
-        <button>얍!</button>
+        {% bootstrap_form form %}
+        <button class="btn btn-primary">얍!</button>
     </form>
 </div>

@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 <form method="POST">
     {% csrf_token %}
     
-    {{ form.as_p }}
+    {% comment %} {{ form.as_p }} {% endcomment %}
 
-    <p>
-        <button>go</button>
-    </p>
+    {% bootstrap_form form %}
+
+    <div>
+        <button class="btn btn-primary">go</button>
+    </div>
 </form>
 
 

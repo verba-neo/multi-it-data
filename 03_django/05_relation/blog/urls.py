@@ -8,6 +8,8 @@ urlpatterns = [
     path('create/', views.create_posting, name='create_posting'),
     # blog/
     path('', views.posting_index, name='posting_index'),
+    # blog/feed/
+    path('feed/', views.posting_feed, name='posting_feed'),
     # blog/1/
     path('<int:posting_pk>/', views.posting_detail, name='posting_detail'),
     # blog/1/update/

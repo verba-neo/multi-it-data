@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap5 %}
 {% block content %}
 <h1>All QnA</h1>
 
@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for posting in postings %}
+          {% for posting in page_obj %}
           
           <tr>
             <th scope="row">{{ posting.pk }}</th>
@@ -33,6 +33,9 @@
           {% endfor %}
         </tbody>
       </table>
+      <div class="d-flex justify-content-center mt-5">
+        {% bootstrap_pagination page_obj %}
+      </div>
 </ul>
 
 

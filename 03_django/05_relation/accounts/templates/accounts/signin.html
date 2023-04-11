@@ -1,13 +1,16 @@
 <!-- accounts/signin.html -->
 {% extends 'base.html' %}
+{% load bootstrap5 %}
+
 {% block content %}
 <h1>Sign In</h1>
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <p>
-        <button>signin</button>
-    </p>
+    {% bootstrap_form form %}
+    
+    <div>
+        <button class="btn btn-primary">signin</button>
+    </div>
 </form>
 {% endblock content %}

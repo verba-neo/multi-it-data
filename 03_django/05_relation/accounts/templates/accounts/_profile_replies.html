@@ -1,0 +1,9 @@
+
+<h2>작성 댓글 목록</h2>
+<ul>
+    {% for reply in profile_user.reply_set.all %}
+    <li>
+        <a href="{% url 'blog:posting_detail' reply.posting.pk %}">{{ reply.content }}</a>
+    </li>
+    {% endfor %}
+</ul>
